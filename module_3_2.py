@@ -1,30 +1,31 @@
 def send_mail(message, recipient, *, sender='university.help@gmail.com'):
-    cor_ = False
+    r_cor_ = False
+    s_cor_ = False
     mail = ('.com', '.ru', '.net')
 
     for i in recipient:
-        if recipient.endswith(mail):
-            if i == '@':
-                cor_ = True
+        if i == '@':
+            if recipient.endswith(mail):
+                r_cor_ = True
                 break
             else:
-                cor_ = False
+                r_cor_ = False
         else:
-            cor_ = False
+            r_cor_ = False
 
     for i in sender:
-        if sender.endswith(mail):
-            if i == '@':
-                cor_ = True
+        if i == '@':
+            if sender.endswith(mail):
+                s_cor_ = True
                 break
             else:
-                cor_ = False
+                s_cor_ = False
         else:
-            cor_ = False
+            s_cor_ = False
 
     if recipient == sender:
         print('Нельзя отправить письмо самому себе!')
-    elif not cor_:
+    elif r_cor_ != s_cor_:
         print(f'Невозможно отправить письмо с адреса {sender} на адрес {recipient}')
     elif sender == 'university.help@gmail.com':
         print(f'Письмо успешно отправлено с адреса {sender} на адрес {recipient}')
